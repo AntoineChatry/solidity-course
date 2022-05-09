@@ -55,7 +55,15 @@ contract FundMe{
         // the actual ETH/USD conversation rate, after adjusting the extra 0s.
         return ethAmountInUsd;
     }
-    
+    function getEntranceFee() public view returns (uint256) {
+        // minimumUSD
+        uint256 minimumUSD = 50 * 10**18;
+        uint256 price = getPrice();
+        uint256 precision = 1 * 10**18;
+        // return (minimumUSD * precision) / price;
+        // We fixed a rounding error found in the video by adding one!
+        return ((minimumUSD * precision) / price) + 1;
+    }
     //modifier: https://medium.com/coinmonks/solidity-tutorial-all-about-modifiers-a86cf81c14cb
     modifier onlyOwner {
     	//is the message sender owner of the contract?
