@@ -27,8 +27,8 @@ def deploy_fund_me():
         {"from": account},
         publish_source=config["networks"][network.show_active()].get("verify"),
     )
-    print(f"FundMe deployed at {fund_me.address}")
-
+    print(f"Contract deployed at {fund_me.address}")
+    return fund_me
 
 def main():
     deploy_fund_me()
